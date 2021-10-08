@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" width="300px" height="300px" viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{
+		fill:#C9DB4F;
+		stroke:#adf;
+		stroke-width:6;
+		stroke-dashArray:650px;
+		
+		animation:line 3s infinite;}
+		@keyframes line{
+			0%{stroke-dashoffset:650px; opacity:1;}
+			90%{stroke-dashoffset:1300px; opacity:1;}
+			100%{stroke-dashoffset:1300px; opacity:0;}
+		}
+]]>
+</style>
+<polygon class="st0" points="107.877,130.246 79.46,124.263 58.422,144.28 55.331,115.405 29.792,101.582 56.298,89.719 
+	61.553,61.159 81.026,82.702 109.812,78.874 95.341,104.051 "/>
+<polygon class="st0" points="222.964,129.8 202.31,109.386 173.785,114.827 186.818,88.875 172.828,63.427 201.536,67.803 
+	221.417,46.635 226.127,75.291 252.401,87.655 226.604,100.99 "/>
+<polygon class="st0" points="208.562,207.527 190.625,196.235 170.586,203.143 176.438,184.29 162.652,168.867 184.206,168.507 
+	195.726,152.07 203.195,170.699 224.099,175.964 207.161,187.838 "/>
+</svg>

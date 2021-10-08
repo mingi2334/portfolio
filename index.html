@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Transition Part2</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        *{margin:0; padding:0;}
+        li{list-style: none;}
+        #wrap{height:600vh;}
+        body::-webkit-scrollbar {
+            width: 0.7em;
+            background: #f33;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #f99;
+        }
+        section{height:100vh; position:relative;}
+        section:nth-child(1){background: #ff3;}
+        section:nth-child(2){background:url(https://images.pexels.com/photos/347134/pexels-photo-347134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+            background-size: cover;
+        }
+        section:nth-child(3){background: #f37;}
+        section:nth-child(4){background: #f99;}
+        section:nth-child(5){background: #fbb;}
+        section:nth-child(6){background: #fdd;}
+
+        section .box{position:absolute; top:300px; left:-300px; opacity:0; border:2px #333 solid;  width:150px; height: 150px; transition:all .6s;}
+        section .txt{position:absolute; top:-300px; left:700px; opacity:0; border:2px #333 solid; width:300px; height:150px; background: #fff; transition:all .6s;}
+
+        section.active .box{position:absolute; top:300px; left:300px; opacity:1; border:2px #333 solid;  width:150px; height: 150px; }
+        section.active .txt{position:absolute; top:300px; left:700px; opacity:1; border:2px #333 solid; width:300px; height:150px; background: #fff; }
+
+        .targetMenu{width:50px; height:300px; position:fixed; top:calc(50% - 150px); left:calc(100% - 150px); z-index: 9999999;}
+        .targetMenu a{display:block; width:30px; height: 30px; line-height: 30px; text-align: center; background:#fff; font-size: 1.2rem; border-radius: 50%;
+            cursor: pointer; transition:all .6s;
+        }
+        .targetMenu li{width:50px; height: 50px; line-height: 50px;}
+        .targetMenu a.on{width:40px; height:40px; background: dodgerblue; color:#fff; font-size: 1.5rem;}
+        section .title{
+            position:absolute;
+            top:40%;
+            left:30%;
+            font-size: 4rem;
+        }
+        section .title span{
+            display:inline-block;
+        }
+        section .title span{
+            transform:translate(50px,0);
+            transition:.6s;
+            opacity:0;
+        }
+        section.active .title span{
+            transform:translate(0,0);
+            opacity:1;
+        }
+        section .title span:nth-child(1){
+            transition-delay:.1s;
+        }
+        section .title span:nth-child(2){
+            transition-delay:.2s;
+        }
+        section .title span:nth-child(3){
+            transition-delay:.3s;
+        }
+        section .title span:nth-child(4){
+            transition-delay:.4s;
+        }
+        section .title span:nth-child(5){
+            transition-delay:.5s;
+        }
+        /* 두번째 색션 */
+        .chart{
+            width:300px;
+            height:180px;
+            position:absolute;
+            top:40%;
+            left:60%;
+            background:#adf;
+        }
+        .chart .graph li{
+            border:1px #333 solid;
+            margin:5px;
+            height:40px;
+        }
+        .chart .graph li div{
+            height:40px;
+            background:#ff5;
+            transform-origin: left top;
+            transition:.6s;
+        }
+        section .chart .graph li:nth-child(1) div{
+            transform:scaleX(0);
+        }
+        section .chart .graph li:nth-child(2) div{
+            transform:scaleX(0);
+        }
+        section .chart .graph li:nth-child(3) div{
+            transform:scaleX(0);
+        }
+        section.active .chart .graph li:nth-child(1) div{
+            transform:scaleX(.9);
+            transition-delay: .6s;
+        }
+        section.active .chart .graph li:nth-child(2) div{
+            transform:scaleX(.85);
+            transition-delay: 1.2s;
+        }
+        section.active .chart .graph li:nth-child(3) div{
+            transform:scaleX(.77);
+            transition-delay: 1.8s;
+        }
+    </style>
+</head>
+<body>
+    <div class="targetMenu">
+        <ul>
+            <li><a herf="#none" class="on" datanum = '0'>1</a></li>
+            <li><a herf="#none" datanum = '1'>2</a></li>
+            <li><a herf="#none" datanum = '2'>3</a></li>
+            <li><a herf="#none" datanum = '3'>4</a></li>
+            <li><a herf="#none" datanum = '4'>5</a></li>
+            <li><a herf="#none" datanum = '5'>6</a></li>
+        </ul>
+    </div>
+    <div id="wrap">
+        <section>
+            <div class="title">
+                <span>안</span><span>녕</span><span>하</span><span>세</span><span>요</span>
+            </div>
+
+            <div class="box"></div>
+            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+        </section>
+        <section>
+            <div class="box"></div>
+            <div class="chart">
+                <ul class="graph">
+                    <li><div></div></li>
+                    <li><div></div></li>
+                    <li><div></div></li>
+                </ul>
+        </section>
+        <section>
+            <div class="box"></div>
+            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+        </section>
+        <section>
+            <div class="box"></div>
+            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+        </section>
+        <section>
+            <div class="box"></div>
+            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+        </section>
+        <section>
+            <div class="box"></div>
+            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+        </section>
+    </div>
+
+    <script>
+
+
+        var targetMenu = document.querySelector(".targetMenu");
+        var onTaget = document.querySelectorAll(".targetMenu ul li");
+        var section = document.querySelectorAll("section");
+        var sectionCounter = 0; 
+        var offset = 0;
+        var count=0;       
+        document.addEventListener('wheel', scrollAni);
+        window.addEventListener('load', activeMenu);
+        targetMenu.addEventListener('click', gosection);
+
+        function scrollAni(e){
+            count++;
+            var gosectioncount = count%5; // 스크롤을 5번 굴리면 이동
+            if(e.wheelDelta<0){
+                if(gosectioncount == 4 && sectionCounter<5)sectionCounter++;
+            }else{
+                if(gosectioncount == 4 && sectionCounter>0)sectionCounter--;
+            }
+            
+            offset = innerHeight*sectionCounter;
+
+            $("html, body").stop().animate({scrollTop:offset},600,"easeInOutExpo");
+
+            setTimeout(activeMenu,300);
+            onTargetMenu();
+        }
+
+        function activeMenu(){
+            section.forEach(function(ele){ele.classList.remove("active");});
+            section[sectionCounter].classList.add("active");
+        }
+
+        function gosection(e){ //메뉴 클릭시 이동 
+            sectionCounter = Number(e.target.getAttribute("datanum"));
+            offset = innerHeight*sectionCounter;
+            $("html, body").stop().animate({scrollTop:offset},600,"easeInOutExpo");
+            setTimeout(activeMenu,300);
+            onTargetMenu();
+        }
+
+        function onTargetMenu(){
+            onTaget.forEach(function(menu){
+                menu.children[0].classList.remove("on");
+            });
+            onTaget[sectionCounter].children[0].classList.add("on");
+        }
+
+        // 스크롤 막기 시작
+        $('html, body').css({'overflow': 'hidden', 'height': '100%'});
+        $('#element').on('scroll touchmove mousewheel', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+        });
+        //스크롤 막기 끝
+
+    </script>
+</body>
+</html>
+[출처] 스크롤링 트랜지션 part4(퀵메뉴 애니) (목포한양직업전문학교) | 작성자 뚱아비
