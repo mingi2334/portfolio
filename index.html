@@ -5,156 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrolling Transition Part2</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="js/jquery.easypiechart.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <style>
-        *{margin:0; padding:0;}
-        li{list-style: none;}
-        #wrap{height:600vh;}
-        body::-webkit-scrollbar {
-            width: 0.7em;
-            background: #f33;
-        }
-        body::-webkit-scrollbar-thumb {
-            background: #f99;
-        }
-        section{height:100vh; position:relative;}
-        section:nth-child(1){background: #fee;}
-        section:nth-child(2){background:url(https://images.pexels.com/photos/347134/pexels-photo-347134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
-            background-size: cover;
-        }
-        section:nth-child(3){background: #f37;}
-        section:nth-child(4){background: #f99;}
-        section:nth-child(5){background: #fbb;}
-        section:nth-child(6){background: #fdd;}
 
-        section .box{position:absolute; top:300px; left:-300px; opacity:0; border:2px #333 solid;  width:150px; height: 150px; transition:all .6s;}
-        section .txt{position:absolute; top:-300px; left:700px; opacity:0; border:2px #333 solid; width:300px; height:150px; background: #fff; transition:all .6s;}
+    <link rel="shortcut icon" href="img/favicon.ico"><!-- 수정 -->
+    <link rel="icon" href="img/favicon.ico"><!-- 수정 -->
 
-        section.active .box{position:absolute; top:300px; left:300px; opacity:1; border:2px #333 solid;  width:150px; height: 150px; }
-        section.active .txt{position:absolute; top:300px; left:700px; opacity:1; border:2px #333 solid; width:300px; height:150px; background: #fff; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
 
-        .targetMenu{width:50px; height:300px; position:fixed; top:calc(50% - 150px); left:calc(100% - 150px); z-index: 9999999;}
-        .targetMenu a{display:block; width:30px; height: 30px; line-height: 30px; text-align: center; background:#fff; font-size: 1.2rem; border-radius: 50%;
-            cursor: pointer; transition:all .6s;
-        }
-        .targetMenu li{width:50px; height: 50px; line-height: 50px;}
-        .targetMenu a.on{width:40px; height:40px; background: dodgerblue; color:#fff; font-size: 1.5rem;}
-        section .title{
-            position:absolute;
-            top:40%;
-            left:30%;
-            font-size: 4rem;
-        }
-        section .title span{
-            display:inline-block;
-        }
-        section .title span{
-            transform:translate(50px,0);
-            transition:.6s;
-            opacity:0;
-        }
-        section.active .title span{
-            transform:translate(0,0);
-            opacity:1;
-        }
-        section .title span:nth-child(1){
-            transition-delay:.1s;
-        }
-        section .title span:nth-child(2){
-            transition-delay:.2s;
-        }
-        section .title span:nth-child(3){
-            transition-delay:.3s;
-        }
-        section .title span:nth-child(4){
-            transition-delay:.4s;
-        }
-        section .title span:nth-child(5){
-            transition-delay:.5s;
-        }
-        /* 두번째 색션 */
-        .chart{
-            width:300px;
-            height:180px;
-            position:absolute;
-            top:40%;
-            left:60%;
-            background:#adf;
-        }
-        .chart .graph li{
-            border:1px #333 solid;
-            margin:5px;
-            height:40px;
-        }
-        .chart .graph li div{
-            height:40px;
-            background:#ff5;
-            transform-origin: left top;
-            transition:.6s;
-        }
-        section .chart .graph li:nth-child(1) div{
-            transform:scaleX(0);
-        }
-        section .chart .graph li:nth-child(2) div{
-            transform:scaleX(0);
-        }
-        section .chart .graph li:nth-child(3) div{
-            transform:scaleX(0);
-        }
-        section.active .chart .graph li:nth-child(1) div{
-            transform:scaleX(.9);
-            transition-delay: .6s;
-        }
-        section.active .chart .graph li:nth-child(2) div{
-            transform:scaleX(.85);
-            transition-delay: 1.2s;
-        }
-        section.active .chart .graph li:nth-child(3) div{
-            transform:scaleX(.77);
-            transition-delay: 1.8s;
-        }
-    </style>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="targetMenu">
         <ul>
-            <li><a herf="#none" class="on" datanum = '0'>1</a></li>
-            <li><a herf="#none" datanum = '1'>2</a></li>
-            <li><a herf="#none" datanum = '2'>3</a></li>
-            <li><a herf="#none" datanum = '3'>4</a></li>
-            <li><a herf="#none" datanum = '4'>5</a></li>
-            <li><a herf="#none" datanum = '5'>6</a></li>
+            <li><a herf="#none" class="on" datanum = '0'></a></li>
+            <li><a herf="#none" datanum = '1'></a></li>
+            <li><a herf="#none" datanum = '2'></a></li>
+            <li><a herf="#none" datanum = '3'></a></li>
+            <li><a herf="#none" datanum = '4'></a></li>
+            <li><a herf="#none" datanum = '5'></a></li>
         </ul>
     </div>
     <div id="wrap">
-        <section>
+        <section><!-- 1번 -->
             <div class="title">
-                <span>안</span><span>녕</span><span>하</span><span>세</span><span>요</span>
+                <span>안</span><span>녕</span><span>하</span><span>세</span><span>요</span><br><!-- 6번 -->
+                <span>디</span><span>자</span><span>이</span><span>너</span><br><!-- 14번 -->
+                <span>황</span><span>민</span><span>기</span> <span>입</span><span>니</span><span>다</span>
+            </div>
+            
+        </section>
+        <section><!-- 2번 Profile -->
+            <div class="protitle">
+               <div class="subject">Let's move on to my dreams.</div>
+               <div class="double"><pre>"                                          "</pre></div>
+               <div class="round"></div>
+               <div class="subtext">하는 디자이너 <span>황민기</span>입니다.</div>
+               <p>
+                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis exercitationem maiores quos quam consequatur dolorum, corporis, nesciunt fugiat ea laboriosam totam recusandae culpa deserunt! Molestias quam quisquam reprehenderit vero ex. 
+               </p>
             </div>
 
-            <div class="box"></div>
-            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
-        </section>
-        <section>
-            <div class="box"></div>
+            <div class="profile">
+                <table>
+                    <tr>
+                        <td>Profile</td>
+                        <td>황민기(20)<br> Hwang min gi</td>
+                    </tr>
+                    <tr>
+                        <td>Education</td>
+                        <td>2017. 2. 산곡중학교 졸업<br>2021. 2. 강진고등학교 졸업<br></td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td>010-2334-8925<br> mingi8925@naver.com</td>
+                    </tr>
+                </table>
+            </div>
             <div class="chart">
                 <ul class="graph">
                     <li><div></div></li>
                     <li><div></div></li>
                     <li><div></div></li>
                 </ul>
+            </div>
+
+            <!-- 스킬차트 -->
+            <div id="skillcontainer">
+                <div class="skillchart" data-percent="60">
+                    <span class="skilltitle">HTML5<br><span class="jumsu">click</span></span>
+                </div>
+                <div class="skillchart" data-percent="50">
+                    <span class="skilltitle">CSS3<br><span class="jumsu">click</span></span>
+                </div>
+                <div class="skillchart" data-percent="30">
+                    <span class="skilltitle" title="자바스크립트">JS<br><span class="jumsu">click</span></span>
+                </div>
+                <div class="skillchart" data-percent="80">
+                    <span class="skilltitle" title="포토샵">PS<br><span class="jumsu">click</span></span>
+                </div>
+                <div class="skillchart" data-percent="70">
+                    <span class="skilltitle" title="일러스트레이터">Ai<br><span class="jumsu">click</span></span>
+                </div>
+                <div class="skillchart" data-percent="65">
+                    <span class="skilltitle" title="인디자인">Id<br><span class="jumsu">click</span></span>
+                </div>
+                <div class="skillchart" data-percent="50">
+                    <span class="skilltitle">Figma<br><span class="jumsu">click</span></span>
+                </div>
+            </div>
+
+            <!-- portfolio 사선 배경 -->
+            <div class="port">Port</div>
+            <div class="folio">folio</div>
+
         </section>
-        <section>
-            <div class="box"></div>
-            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+        <section><!-- 3번째 색션 대표 작품 -->
+            <div class="leftSul">
+                <div class="Ptitle">
+                    Portfolio <br>
+                    Calling Card
+                </div>
+                <div class="Dintro">
+                    <h3>Introduce</h3>
+                    <p>
+                        명함 제작<br>
+                    </p>
+                    <h3>Use Fonts</h3>
+                    <p><span>Gowun Batang</span> / <span>Arial Bold</span></p>
+                    <h3>Color System</h3>
+                    <p class="bcardcolor">
+                        <span class="colorBox"></span> #333333 <br>
+                        <span class="colorBox"></span> #CC9933 <br>
+                        <span class="colorBox"></span> #3366CC <br>
+                    </p>
+                </div>
+            </div>
+            <div class="rightMokup">
+               
+            </div>
         </section>
-        <section>
-            <div class="box"></div>
-            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+
+        <section><!-- 4번째 색션 사이트 리뉴얼 -->
+            <div class="leftSul">
+                <div class="Ptitle">
+                    portfolio <br>
+                    Horizontal banner
+                </div>
+                <div class="Dintro">
+                    <h3>Introduce</h3>
+                    <p>
+                        캠핑카 가로배너<br>
+                        가구 쇼핑몰 가로배너<br>
+                    </p>
+                    <h3>Use Fonts</h3>
+                    <p><span>Gmarket Sans</span> / <span>Gowun Dodum</span></p>
+                    <h3>Color System</h3>
+                
+                </div>
+            </div>
+            <div class="rightMokup">
+
+            </div>
         </section>
-        <section>
-            <div class="box"></div>
-            <div class="txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga debitis assumenda exercitationem modi eaque perspiciatis incidunt ullam nemo quo dolorem. Adipisci similique officiis omnis in commodi id exercitationem debitis quo.</div>
+
+        <section><!-- 5번째 겔러리 슬라이드 -->
+            <div class="leftSul">
+                <div class="Ptitle">
+                    portfolio <br>
+                    Vertical banner
+                </div>
+                <div class="Dintro">
+                    <h3>Introduce</h3>
+                    <p>
+                        할로윈 세로배너<br>
+                        고깃집 세로배너<br>
+                        동물병원 세로배너<br>
+                        술집 세로배너<br>
+                    </p>
+                    <h3>Use Fonts</h3>
+                    <p><span>Noto Sans Kr</span> / <span>Open Sans</span></p>
+                    <h3>Color System</h3>
+                    
+                </div>
+            </div>
+            <div class="rightMokup">
+                <div id="galleryZone">
+                    <ul>
+                        <li><a href="#none"><img src="gall_img/halloween1.jpg" alt="그림2"></a></li>
+                        <li><a href="#none"><img src="gall_img/halloween2.jpg" alt="그림3"></a></li>
+                        <li><a href="#none"><img src="gall_img/halloween3.jpg" alt="그림4"></a></li>
+                        <li><a href="#none"><img src="gall_img/wine1.jpg" alt="그림5"></a></li>
+                    </ul>        
+                    <div class="arrow left"><a href="#"><img src="img/left.png" alt="" onclick="left()"></a></div>
+                    <div class="arrow right"><a href="#"><img src="img/right.png" alt="" onclick="go()"></a></div>				
+                </div>
+            </div>
+            
         </section>
         <section>
             <div class="box"></div>
@@ -162,66 +194,6 @@
         </section>
     </div>
 
-    <script>
-
-
-        var targetMenu = document.querySelector(".targetMenu");
-        var onTaget = document.querySelectorAll(".targetMenu ul li");
-        var section = document.querySelectorAll("section");
-        var sectionCounter = 0; 
-        var offset = 0;
-        var count=0;       
-        document.addEventListener('wheel', scrollAni);
-        window.addEventListener('load', activeMenu);
-        targetMenu.addEventListener('click', gosection);
-
-        function scrollAni(e){
-            count++;
-            var gosectioncount = count%5; // 스크롤을 5번 굴리면 이동
-            if(e.wheelDelta<0){
-                if(gosectioncount == 4 && sectionCounter<5)sectionCounter++;
-            }else{
-                if(gosectioncount == 4 && sectionCounter>0)sectionCounter--;
-            }
-            
-            offset = innerHeight*sectionCounter;
-
-            $("html, body").stop().animate({scrollTop:offset},600,"easeInOutExpo");
-
-            setTimeout(activeMenu,300);
-            onTargetMenu();
-        }
-
-        function activeMenu(){
-            section.forEach(function(ele){ele.classList.remove("active");});
-            section[sectionCounter].classList.add("active");
-        }
-
-        function gosection(e){ //메뉴 클릭시 이동 
-            sectionCounter = Number(e.target.getAttribute("datanum"));
-            offset = innerHeight*sectionCounter;
-            $("html, body").stop().animate({scrollTop:offset},600,"easeInOutExpo");
-            setTimeout(activeMenu,300);
-            onTargetMenu();
-        }
-
-        function onTargetMenu(){
-            onTaget.forEach(function(menu){
-                menu.children[0].classList.remove("on");
-            });
-            onTaget[sectionCounter].children[0].classList.add("on");
-        }
-
-        // 스크롤 막기 시작
-        $('html, body').css({'overflow': 'hidden', 'height': '100%'});
-        $('#element').on('scroll touchmove mousewheel', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
-        });
-        //스크롤 막기 끝
-
-    </script>
+    <script src="js/script.js"> </script>
 </body>
 </html>
-[출처] 스크롤링 트랜지션 part4(퀵메뉴 애니) (목포한양직업전문학교) | 작성자 뚱아비
