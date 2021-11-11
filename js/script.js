@@ -76,75 +76,106 @@
         );
 
         /* 겔러리 슬라이드 */
-        var imgWidth = document.querySelector("#galleryZone li").clientWidth;
-		var gallMove = document.querySelector("#galleryZone ul");
-		var gallZone = document.querySelectorAll("#galleryZone img");
-		var arrow = document.querySelectorAll(".arrow");
-        		
-		gallZone.forEach((e)=>{e.addEventListener('mouseover',stop)});
-        gallZone.forEach((e)=>{e.addEventListener('mouseout',start)});
 
-		var interval;
-		var aniStartPoint;
-		var aniEndPoint;
-		var gcount = 0;
-		var slideon = "on";
+        var gall = document.querySelector(".gallZone1");
+        gall.addEventListener('mouseover', goSlide);
 
-		function start(){
-			interval = setInterval(go, 3000);
-			arrow[0].style.opacity = "0";
-			arrow[1].style.opacity = "0";
-		}
+        var gall2 = document.querySelector(".gallZone2");
+        gall2.addEventListener('mouseover', goSlide2);
 
-		function go(){
-			if(slideon == "on"){
+        var imgWidth;
+        var gallMove;
+        var gallZone;
+        var interval;
+        var arrow;
+        var aniStartPoint;
+        var aniEndPoint;
+        var gcount = 0;
+        var slideon = "on";
+        var gslidenum; //슬라이드 갯수
 
-				slideon = "off";
+        function goSlide(){
+            imgWidth = gall.childNodes[1].children[0].clientWidth; //#galleryZone li 첫번째 li선택
+            gallMove = gall.childNodes[1]; //#galleryZone ul
+            gallZone = gall.querySelectorAll("img");
+            arrow = gall.getElementsByClassName("arrow");
+            arrow[0].addEventListener("click",left);
+            arrow[1].addEventListener("click",go);
+            gslidenum = 3; // 슬라이드 갯수
+                 
+            gallZone.forEach((e)=>{e.addEventListener('mouseover',stop)});
+            gallZone.forEach((e)=>{e.addEventListener('mouseout',start)});
 
-				if(gcount == 5) gcount = 0;
+           
+        }
 
-				aniStartPoint = -imgWidth * gcount;
-				gcount++;
-				aniEndPoint = -imgWidth * gcount;
+        function goSlide2(){
+            imgWidth = gall2.childNodes[1].children[0].clientWidth; //#galleryZone li 첫번째 li선택
+            gallMove = gall2.childNodes[1]; //#galleryZone ul
+            gallZone = gall2.querySelectorAll("img");
+            arrow = gall2.getElementsByClassName("arrow");
+            arrow[0].addEventListener("click",left);
+            arrow[1].addEventListener("click",go);
+            gslidenum = 5; // 슬라이드 갯수
+                 
+            gallZone.forEach((e)=>{e.addEventListener('mouseover',stop)});
+            gallZone.forEach((e)=>{e.addEventListener('mouseout',start)});
+        }
 
-				goAni();
-			}
-		}
 
-		function left(){
-			if(slideon == "on"){
+        function start(){
+            interval = setInterval(go, 3000); //3초에 한번씩 슬라이드 진행
+            arrow[0].style.opacity = "0";
+            arrow[1].style.opacity = "0";
+        }
 
-				slideon = "off";
+        function go(){
+            if(slideon == "on"){
 
-				if(gcount == 0) gcount = 5;
+                slideon = "off";
 
-				aniStartPoint = -imgWidth * gcount;
-				gcount--;
-				aniEndPoint = -imgWidth * gcount;
+                if(gcount == gslidenum) gcount = 0; //gslidenum 슬라이드 이미지 갯수에 맞게 현재는 5
 
-				goAni();
-			}
-		}
+                aniStartPoint = -imgWidth * gcount;
+                gcount++;
+                aniEndPoint = -imgWidth * gcount;
 
-		function goAni(){
-			var ani = gallMove.animate([
-				{
-					transform:"translateX(" + aniStartPoint + "px)"
-				},{
-					transform:"translateX(" + aniEndPoint + "px)"
-				}
-			],1000);
+                goAni();
+            }
+        }
 
-			ani.addEventListener('finish',function(){
-				gallMove.style.transform = "translateX(" + aniEndPoint + "px)";
-				slideon = "on";
-			});
-		}
+        function left(){
+            if(slideon == "on"){
 
-		function stop(){
-			clearInterval(interval);
-			arrow[0].style.opacity = "0.3";
-			arrow[1].style.opacity = "0.3";
-		}
+                slideon = "off";
 
-        
+                if(gcount == 0) gcount = gslidenum; //gslidenum 슬라이드 이미지 갯수에 맞게 현재는 5
+
+                aniStartPoint = -imgWidth * gcount;
+                gcount--;
+                aniEndPoint = -imgWidth * gcount;
+
+                goAni();
+            }
+        }
+
+        function goAni(){
+            var ani = gallMove.animate([
+                {
+                    transform:"translateX(" + aniStartPoint + "px)"
+                },{
+                    transform:"translateX(" + aniEndPoint + "px)"
+                }
+            ],1000);
+
+            ani.addEventListener('finish',function(){
+                gallMove.style.transform = "translateX(" + aniEndPoint + "px)";
+                slideon = "on";
+            });
+        }
+
+        function stop(){
+            clearInterval(interval);
+            arrow[0].style.opacity = "0.3";
+            arrow[1].style.opacity = "0.3";
+        }
