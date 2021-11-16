@@ -86,6 +86,7 @@
         var imgWidth;
         var gallMove;
         var gallZone;
+        var gallZone2;
         var interval;
         var arrow;
         var aniStartPoint;
@@ -101,7 +102,7 @@
             arrow = gall.getElementsByClassName("arrow");
             arrow[0].addEventListener("click",left);
             arrow[1].addEventListener("click",go);
-            gslidenum = 3; // 슬라이드 갯수
+            gslidenum = 2; // 슬라이드 갯수-1
                  
             gallZone.forEach((e)=>{e.addEventListener('mouseover',stop)});
             gallZone.forEach((e)=>{e.addEventListener('mouseout',start)});
@@ -112,14 +113,14 @@
         function goSlide2(){
             imgWidth = gall2.childNodes[1].children[0].clientWidth; //#galleryZone li 첫번째 li선택
             gallMove = gall2.childNodes[1]; //#galleryZone ul
-            gallZone = gall2.querySelectorAll("img");
+            gallZone2 = gall2.querySelectorAll("img");
             arrow = gall2.getElementsByClassName("arrow");
             arrow[0].addEventListener("click",left);
             arrow[1].addEventListener("click",go);
-            gslidenum = 5; // 슬라이드 갯수
+            gslidenum = 4; // 슬라이드 갯수 -1 
                  
-            gallZone.forEach((e)=>{e.addEventListener('mouseover',stop)});
-            gallZone.forEach((e)=>{e.addEventListener('mouseout',start)});
+            gallZone2.forEach((e)=>{e.addEventListener('mouseover',stop)});
+            gallZone2.forEach((e)=>{e.addEventListener('mouseout',start)});
         }
 
 

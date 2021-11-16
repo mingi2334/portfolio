@@ -15,11 +15,13 @@ section:nth-child(1){background:url('../img/0.jpg'); background-size: cover; bac
 /* section:nth-child(3){background:url('../img/2.jpg'); background-size: cover; background-position: center center;} */
 /* section:nth-child(4){background:url('../img/3.jpg'); background-size: cover; background-position: center center;} */
 /* section:nth-child(5){background:url('../img/4.jpg'); background-size: cover; background-position: center center;} */
-section:nth-child(6){background:url('../img/5.jpg'); background-size: cover; background-position: center center;}
+section:nth-child(6){background:url('../img/fairy-tale-1077863.jpg'); background-size: cover; background-position: center center;}
 
 section .box{position:absolute; top:300px; left:-300px; opacity:0; border:2px #333 solid;  width:150px; height: 150px; transition:all .6s;}
 section .txt{position:absolute; top:-300px; left:700px; opacity:0; border:2px #333 solid; width:300px; height:150px; background: #fff; transition:all .6s;}
-
+section .txt>p{
+    font-size:24px;
+}
 section.active .box{position:absolute; top:300px; left:300px; opacity:1; border:2px #333 solid;  width:150px; height: 150px; }
 section.active .txt{position:absolute; top:300px; left:700px; opacity:1; border:2px #333 solid; width:300px; height:150px; background: #fff; }
 
@@ -165,7 +167,7 @@ section.active .round{
     transform: translateX(-50%);   
 }
 .protitle p{
-    width:80%;
+    width:85%;
     position: absolute;
     top:45%;
     left:50%;
@@ -396,6 +398,9 @@ section.active .rightMokup{
     position: absolute;
     bottom:0;
 }
+.protitle .name{
+    font-size:24px;
+}
 
 .Dintro p{
     padding-bottom: 16px;
@@ -414,3 +419,7 @@ section.active .rightMokup{
     background:#faa;
     display:inline-block;
 }
+
+section .txt1>p{
+    color:white; top:50%; position:absolute; top:50%; left:5%; font-size:24px;}
+ 
